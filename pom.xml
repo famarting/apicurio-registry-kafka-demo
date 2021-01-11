@@ -17,7 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <avro.version>1.10.0</avro.version>
-        <apicurio.version>1.3.1.Final</apicurio.version>
+        <apicurio.version>1.3.2.Final</apicurio.version>
     </properties>
 
     <dependencies>
@@ -34,6 +34,12 @@
             <artifactId>avro</artifactId>
             <version>${avro.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.apicurio</groupId>
+            <artifactId>apicurio-registry-maven-plugin</artifactId>
+            <version>1.3.2.Final</version>
+            <scope>test</scope>
+        </dependency>        
         <dependency>
             <groupId>io.apicurio</groupId>
             <artifactId>apicurio-registry-utils-serde</artifactId>
@@ -79,7 +85,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
                 <version>${avro.version}</version>
@@ -98,8 +104,114 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
-
+<profiles>
+    <profile>
+        <id>avro</id>
+        <build>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.avro</groupId>
+              <artifactId>avro-maven-plugin</artifactId>
+              <version>${avro.version}</version>
+              <executions>
+                <execution>
+                  <phase>generate-sources</phase>
+                  <goals>
+                    <goal>schema</goal>
+                  </goals>
+                  <configuration>
+                    <sourceDirectory>${project.basedir}/src/main/resources/avro/schema/</sourceDirectory>
+                    <outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
+    <profile>
+        <id>upload</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>io.apicurio</groupId>
+                    <artifactId>apicurio-registry-maven-plugin</artifactId>
+                    <version>${apicurio.version}</version>
+                    <executions>
+                      <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                          <goal>register</goal> 
+                        </goals>
+                        <configuration>
+                          <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.ispworld.at/api</registryUrl> 
+                          <artifactType>AVRO</artifactType>
+                          <artifacts>
+                            <events-value>${project.basedir}/src/main/resources/avro/schema/event.avsc</events-value> 
+                          </artifacts>
+                        </configuration>
+                      </execution>
+                    </executions>
+                  </plugin>
+            </plugins>
+        </build>
+    </profile>
+    <profile>
+        <id>test</id>
+        <build>
+          <plugins>
+            <plugin>
+              <groupId>io.apicurio</groupId>
+              <artifactId>apicurio-registry-maven-plugin</artifactId>
+              <version>${apicurio.version}</version>
+              <executions>
+                <execution>
+                  <phase>generate-sources</phase>
+                  <goals>
+                    <goal>test-update</goal>
+                  </goals>
+                  <configuration>
+                    <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.ispworld.at/api</registryUrl>
+                    <artifactType>AVRO</artifactType>
+                    <artifacts>
+                      <events-value>${project.basedir}/src/main/resources/avro/schema/event.avsc</events-value>
+                    </artifacts>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
+      <profile>
+        <id>download</id>
+        <build>
+          <plugins>
+            <plugin>
+              <groupId>io.apicurio</groupId>
+              <artifactId>apicurio-registry-maven-plugin</artifactId>
+              <version>${apicurio.version}</version>
+              <executions>
+                <execution>
+                  <phase>generate-sources</phase>
+                  <goals>
+                    <goal>download</goal>
+                  </goals>
+                  <configuration>
+                    <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.ispworld.at/api</registryUrl>
+                    <ids>
+                      <param1>events-value</param1>
+                    </ids>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </build>
+      </profile>
+</profiles>
 </project>

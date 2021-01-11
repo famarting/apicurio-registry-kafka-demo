@@ -35,3 +35,4 @@ build/
 /mvnw.cmd
 /mvnw
 /application.yaml
+src/main/java/com/redhat/apicuriokafkademo/schema/avro/Event.java
