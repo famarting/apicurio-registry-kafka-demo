@@ -147,7 +147,7 @@
                           <goal>register</goal> 
                         </goals>
                         <configuration>
-                          <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.ispworld.at/api</registryUrl> 
+                          <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.lab.redhat.com/api</registryUrl> 
                           <artifactType>AVRO</artifactType>
                           <artifacts>
                             <events-value>${project.basedir}/src/main/resources/avro/schema/event.avsc</events-value> 
@@ -174,7 +174,7 @@
                     <goal>test-update</goal>
                   </goals>
                   <configuration>
-                    <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.ispworld.at/api</registryUrl>
+                    <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.lab.redhat.com/api</registryUrl>
                     <artifactType>AVRO</artifactType>
                     <artifacts>
                       <events-value>${project.basedir}/src/main/resources/avro/schema/event.avsc</events-value>
@@ -201,7 +201,7 @@
                     <goal>download</goal>
                   </goals>
                   <configuration>
-                    <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.ispworld.at/api</registryUrl>
+                    <registryUrl>http://apicurioregistry1.streams-playground-1.apps.ocp.lab.redhat.com/api</registryUrl>
                     <ids>
                       <param1>events-value</param1>
                     </ids>
