@@ -10,12 +10,9 @@
     "name" : "description",
     "type" : "string"
   }, {
-    "name" : "createdOnAt",
+    "name" : "createdOn",
     "type" : "int",
     "logicalType": "timestamp-millis"
-  }, {
-    "name" : "createdAt",
-    "type" : "string"
   }
   ]
 }
