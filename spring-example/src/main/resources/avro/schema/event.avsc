@@ -1,0 +1,22 @@
+{
+  "name": "Event",
+  "namespace": "io.apicurio.example.schema.avro",
+  "type": "record",
+  "doc": "Avro Schema for Event",
+  "fields" : [ {
+    "name" : "name",
+    "type" : "string"
+  }, {
+    "name" : "description",
+    "type" : "string"
+  }, {
+    "name" : "createdOn",
+    "type" : "long",
+    "logicalType": "timestamp-millis"
+  }, {
+    "name" : "source",
+    "type" : ["null", "string"],
+    "default" : null
+  }
+  ]
+}
