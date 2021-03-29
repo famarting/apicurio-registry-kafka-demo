@@ -16,7 +16,6 @@
 
 package io.apicurio.example.kstreams;
 
-import java.util.Date;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.kstream.Transformer;
 import org.apache.kafka.streams.processor.ProcessorContext;
@@ -47,7 +46,6 @@ public class OrdersTransformer implements Transformer<String, Order, KeyValue<St
         Event event = new Event();
         event.setName("Order processed");
         event.setDescription(String.format("Item %s quantity %d", value.getItem(), value.getQuantity()));
-        event.setCreatedOn(Long.valueOf(new Date().getTime()).intValue());
 
         return KeyValue.pair(key, event);
     }

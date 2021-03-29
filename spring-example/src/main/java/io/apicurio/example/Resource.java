@@ -3,8 +3,6 @@ package io.apicurio.example;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Date;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +22,6 @@ public class Resource {
     public void publish(@RequestBody InputEvent event) {
         log.info("REST Controller has received entity: {}", event);
         Event avroEvent = new Event();
-        avroEvent.setCreatedOn(new Date().getTime());
         avroEvent.setName(event.getName());
         avroEvent.setDescription(event.getDescription());
         avroEvent.setSource("spring");

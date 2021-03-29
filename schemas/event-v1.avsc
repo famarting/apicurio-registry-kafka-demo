@@ -9,10 +9,6 @@
   }, {
     "name" : "description",
     "type" : "string"
-  }, {
-    "name" : "createdOn",
-    "type" : "long",
-    "logicalType": "timestamp-millis"
   }
   ]
 }
