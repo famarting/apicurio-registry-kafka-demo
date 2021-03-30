@@ -62,6 +62,7 @@ public class KStreamsTopologyProducer {
 
         Map<String, Object> eventsConfig = new HashMap<>();
         eventsConfig.put(SerdeConfig.REGISTRY_URL, registryUrl);
+        eventsConfig.put(SerdeConfig.FIND_LATEST_ARTIFACT, true);
         eventsConfig.put(AvroKafkaSerdeConfig.USE_SPECIFIC_AVRO_READER, true);
         eventsConfig.put(SerdeConfig.ARTIFACT_RESOLVER_STRATEGY, RecordIdStrategy.class);
 
