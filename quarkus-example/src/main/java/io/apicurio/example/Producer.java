@@ -5,13 +5,15 @@ import javax.inject.Inject;
 
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.apicurio.example.schema.avro.Event;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @ApplicationScoped
 public class Producer {
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Inject
     @Channel("events")

@@ -2,6 +2,17 @@ server:
   port: 8081
 spring:
   kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.apicurio.registry.serde.avro.AvroKafkaSerializer
+      properties:
+        apicurio:
+          registry:
+            url: http://localhost:8181/apis/registry/v2
+            artifact-resolver-strategy: io.apicurio.registry.serde.avro.strategy.RecordIdStrategy
+            artifact:
+              version: "1"
     consumer:
       bootstrap-servers: localhost:9092
       group-id: spring-example-consumer-group
@@ -14,16 +25,3 @@ spring:
           registry:
             url: http://localhost:8181/apis/registry/v2
             use-specific-avro-reader: true
-            # artifact.group-id: io.apicurio.example
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: io.apicurio.registry.serde.avro.AvroKafkaSerializer
-      properties:
-        apicurio:
-          registry:
-            url: http://localhost:8181/apis/registry/v2
-            artifact-resolver-strategy: io.apicurio.registry.serde.avro.strategy.RecordIdStrategy
-            # auto-register: true
-            find-latest: true
-            artifact.group-id: io.apicurio.example

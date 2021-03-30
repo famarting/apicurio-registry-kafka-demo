@@ -4,12 +4,15 @@ import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
-import io.apicurio.example.schema.avro.Event;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
+import io.apicurio.example.schema.avro.Event;
+
 @Path("/kafka")
 public class Resource {
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Inject
     Producer producer;
@@ -21,6 +24,7 @@ public class Resource {
         Event avroEvent = new Event();
         avroEvent.setName(event.getName());
         avroEvent.setDescription(event.getDescription());
+        avroEvent.setSource("quarkus");
         this.producer.send(avroEvent);
     }
 }

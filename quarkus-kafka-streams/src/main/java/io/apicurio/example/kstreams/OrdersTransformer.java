@@ -46,6 +46,7 @@ public class OrdersTransformer implements Transformer<String, Order, KeyValue<St
         Event event = new Event();
         event.setName("Order processed");
         event.setDescription(String.format("Item %s quantity %d", value.getItem(), value.getQuantity()));
+        event.setSource("quarkus-kafka-streams");
 
         return KeyValue.pair(key, event);
     }

@@ -3,12 +3,15 @@ package io.apicurio.example;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.microprofile.reactive.messaging.Incoming;
-import io.apicurio.example.schema.avro.Event;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
+import io.apicurio.example.schema.avro.Event;
+
 @ApplicationScoped
 public class Consumer {
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Incoming("events-sink")
     public void consume(Event message) {

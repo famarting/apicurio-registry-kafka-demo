@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.apicurio</groupId>
-    <artifactId>apicurio-kafka-demo-quarkus</artifactId>
+    <artifactId>apicurio-kafka-demo-quarkus-kafka-streams</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>apicurio-kafka-demo-quarkus</name>
-    <description>Demo project for apicurio and kafka using quarkus</description>
+    <description>Demo project for apicurio and kafka using quarkus kafka streams</description>
 
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
@@ -71,6 +71,11 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-kafka-streams</artifactId>
         </dependency>
 
         <dependency>

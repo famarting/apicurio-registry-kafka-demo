@@ -45,7 +45,6 @@ public class KStreamsTopologyProducer {
     private static final String ORDERS_TOPIC = "orders";
     private static final String EVENTS_TOPIC = "events";
 
-//    @Inject
     @ConfigProperty(name = "apicurio.registry.url")
     String registryUrl;
 
@@ -53,17 +52,10 @@ public class KStreamsTopologyProducer {
     public Topology buildTopology() {
         StreamsBuilder builder = new StreamsBuilder();
 
-//        builder.stream(
-//                    EVENTS_TOPIC,
-//                    Consumed.with(Serdes.String(), eventsSerde)
-//                )
-//                .print(Printed.<String, Event>toSysOut().withKeyValueMapper(new BasicEventsLoggerMapper()));
-
         Map<String, Object> ordersConfig = new HashMap<>();
         ordersConfig.put(SerdeConfig.REGISTRY_URL, registryUrl);
         ordersConfig.put(AvroKafkaSerdeConfig.USE_SPECIFIC_AVRO_READER, true);
         ordersConfig.put(SerdeConfig.ARTIFACT_RESOLVER_STRATEGY, RecordIdStrategy.class);
-        ordersConfig.put(SerdeConfig.EXPLICIT_ARTIFACT_GROUP_ID, "io.apicurio.example");
 
         AvroSerde<Order> ordersSerde = new AvroSerde<>();
         ordersSerde.configure(ordersConfig, false);
@@ -72,11 +64,9 @@ public class KStreamsTopologyProducer {
         eventsConfig.put(SerdeConfig.REGISTRY_URL, registryUrl);
         eventsConfig.put(AvroKafkaSerdeConfig.USE_SPECIFIC_AVRO_READER, true);
         eventsConfig.put(SerdeConfig.ARTIFACT_RESOLVER_STRATEGY, RecordIdStrategy.class);
-        eventsConfig.put(SerdeConfig.EXPLICIT_ARTIFACT_GROUP_ID, "io.apicurio.example");
 
         AvroSerde<Event> eventsSerde = new AvroSerde<>();
         eventsSerde.configure(eventsConfig, false);
-
 
         builder.stream(
                     ORDERS_TOPIC,
@@ -90,17 +80,5 @@ public class KStreamsTopologyProducer {
 
         return builder.build();
     }
-
-//    public static class BasicEventsLoggerMapper implements KeyValueMapper<String, Event, String> {
-//
-//        /**
-//         * @see org.apache.kafka.streams.kstream.KeyValueMapper#apply(java.lang.Object, java.lang.Object)
-//         */
-//        @Override
-//        public String apply(String key, Event value) {
-//            return "Consumed event from events topic via kafka streams " + value;
-//        }
-//
-//    }
 
 }

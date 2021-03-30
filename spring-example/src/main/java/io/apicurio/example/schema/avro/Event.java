@@ -15,8 +15,8 @@ import org.apache.avro.message.SchemaStore;
 /** Avro Schema for Event */
 @org.apache.avro.specific.AvroGenerated
 public class Event extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -3808115584469037383L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Event\",\"namespace\":\"io.apicurio.example.schema.avro\",\"doc\":\"Avro Schema for Event\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"},{\"name\":\"source\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
+  private static final long serialVersionUID = 4853354375772378617L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Event\",\"namespace\":\"io.apicurio.example.schema.avro\",\"doc\":\"Avro Schema for Event\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -74,7 +74,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
 
    private java.lang.CharSequence name;
    private java.lang.CharSequence description;
-   private java.lang.CharSequence source;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -87,12 +86,10 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
    * All-args constructor.
    * @param name The new value for name
    * @param description The new value for description
-   * @param source The new value for source
    */
-  public Event(java.lang.CharSequence name, java.lang.CharSequence description, java.lang.CharSequence source) {
+  public Event(java.lang.CharSequence name, java.lang.CharSequence description) {
     this.name = name;
     this.description = description;
-    this.source = source;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -102,7 +99,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
     switch (field$) {
     case 0: return name;
     case 1: return description;
-    case 2: return source;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -113,7 +109,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
     switch (field$) {
     case 0: name = (java.lang.CharSequence)value$; break;
     case 1: description = (java.lang.CharSequence)value$; break;
-    case 2: source = (java.lang.CharSequence)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -150,23 +145,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
    */
   public void setDescription(java.lang.CharSequence value) {
     this.description = value;
-  }
-
-  /**
-   * Gets the value of the 'source' field.
-   * @return The value of the 'source' field.
-   */
-  public java.lang.CharSequence getSource() {
-    return source;
-  }
-
-
-  /**
-   * Sets the value of the 'source' field.
-   * @param value the value to set.
-   */
-  public void setSource(java.lang.CharSequence value) {
-    this.source = value;
   }
 
   /**
@@ -212,7 +190,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
 
     private java.lang.CharSequence name;
     private java.lang.CharSequence description;
-    private java.lang.CharSequence source;
 
     /** Creates a new Builder */
     private Builder() {
@@ -233,10 +210,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
         this.description = data().deepCopy(fields()[1].schema(), other.description);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.source)) {
-        this.source = data().deepCopy(fields()[2].schema(), other.source);
-        fieldSetFlags()[2] = other.fieldSetFlags()[2];
-      }
     }
 
     /**
@@ -252,10 +225,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
       if (isValidValue(fields()[1], other.description)) {
         this.description = data().deepCopy(fields()[1].schema(), other.description);
         fieldSetFlags()[1] = true;
-      }
-      if (isValidValue(fields()[2], other.source)) {
-        this.source = data().deepCopy(fields()[2].schema(), other.source);
-        fieldSetFlags()[2] = true;
       }
     }
 
@@ -339,46 +308,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
       return this;
     }
 
-    /**
-      * Gets the value of the 'source' field.
-      * @return The value.
-      */
-    public java.lang.CharSequence getSource() {
-      return source;
-    }
-
-
-    /**
-      * Sets the value of the 'source' field.
-      * @param value The value of 'source'.
-      * @return This builder.
-      */
-    public io.apicurio.example.schema.avro.Event.Builder setSource(java.lang.CharSequence value) {
-      validate(fields()[2], value);
-      this.source = value;
-      fieldSetFlags()[2] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'source' field has been set.
-      * @return True if the 'source' field has been set, false otherwise.
-      */
-    public boolean hasSource() {
-      return fieldSetFlags()[2];
-    }
-
-
-    /**
-      * Clears the value of the 'source' field.
-      * @return This builder.
-      */
-    public io.apicurio.example.schema.avro.Event.Builder clearSource() {
-      source = null;
-      fieldSetFlags()[2] = false;
-      return this;
-    }
-
     @Override
     @SuppressWarnings("unchecked")
     public Event build() {
@@ -386,7 +315,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
         Event record = new Event();
         record.name = fieldSetFlags()[0] ? this.name : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.description = fieldSetFlags()[1] ? this.description : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.source = fieldSetFlags()[2] ? this.source : (java.lang.CharSequence) defaultValue(fields()[2]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -423,14 +351,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
 
     out.writeString(this.description);
 
-    if (this.source == null) {
-      out.writeIndex(0);
-      out.writeNull();
-    } else {
-      out.writeIndex(1);
-      out.writeString(this.source);
-    }
-
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -442,15 +362,8 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
 
       this.description = in.readString(this.description instanceof Utf8 ? (Utf8)this.description : null);
 
-      if (in.readIndex() != 1) {
-        in.readNull();
-        this.source = null;
-      } else {
-        this.source = in.readString(this.source instanceof Utf8 ? (Utf8)this.source : null);
-      }
-
     } else {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 2; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.name = in.readString(this.name instanceof Utf8 ? (Utf8)this.name : null);
@@ -458,15 +371,6 @@ public class Event extends org.apache.avro.specific.SpecificRecordBase implement
 
         case 1:
           this.description = in.readString(this.description instanceof Utf8 ? (Utf8)this.description : null);
-          break;
-
-        case 2:
-          if (in.readIndex() != 1) {
-            in.readNull();
-            this.source = null;
-          } else {
-            this.source = in.readString(this.source instanceof Utf8 ? (Utf8)this.source : null);
-          }
           break;
 
         default:

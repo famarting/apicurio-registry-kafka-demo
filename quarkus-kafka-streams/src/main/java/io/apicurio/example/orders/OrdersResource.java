@@ -25,16 +25,18 @@ import javax.ws.rs.PathParam;
 
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.apicurio.example.schema.avro.Order;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Fabian Martinez
  */
-@Slf4j
 @Path("orders")
 public class OrdersResource {
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Inject
     @Channel("orders")
