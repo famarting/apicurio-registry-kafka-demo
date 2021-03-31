@@ -28,5 +28,5 @@ mvn quarkus:dev
 kafkacat -b localhost:9092 -t events
 http :8081/kafka/publish name=hello description=spring
 http :8082/kafka/publish name=hello description=quarkus
-http :8083/orders/test/5
+http :8083/orders/book/5
 ```
